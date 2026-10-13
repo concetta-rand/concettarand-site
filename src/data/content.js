@@ -11,9 +11,21 @@ export const notes = [
   ]}
 ];
 export const projects = [
-  {number:'01', title:'Concetta’s Lab', type:'AI experiments', description:'A personal portfolio and experimental workbench for exploring ideas, prototypes, and delightful rabbit holes.', href:'https://concetta-builds.base44.app', art:'lab'},
-  {number:'02', title:'Ginormous Cookies', type:'An experiment in making', description:'A fun family-run bakery experiment featuring oversized cookies and a few ambitious ideas.', href:'https://ginormouscookies.base44.app', art:'cookies'}
+  {number:'01', title:'With Margin', type:'Making', description:'A project I’m making and exploring.', href:'https://withmargin.co/', art:'margin', status:'live'},
+  {number:'02', title:'Ginormous Cookies', type:'An experiment in making', description:'A family-run bakery experiment featuring oversized cookies and a few ambitious ideas.', href:'https://ginormouscookies.base44.app', art:'cookies', status:'live'},
+  {number:'03', title:'Accountabillybobs', type:'Idea in progress', description:'A little experiment in helping friends pair up around shared goals, encourage each other, and follow through.', href:'', art:'buddies', status:'idea'}
 ];
 export const books = [
-  // Replace these examples with actual books when ready. No invented reading history on the live site.
+  {title:'Mattering', author:'Jennifer Breheny Wallace', status:'reading'},
+  {title:'The Future Is Analog', author:'David Sax', status:'reading'},
+  {title:'The Anthropocene Reviewed', author:'John Green', status:'reading'},
+  {title:'The War of Art', author:'Steven Pressfield', status:'favorite'},
+  {title:'The Artist’s Way', author:'Julia Cameron', status:'favorite'},
+  {title:'Letters to a Young Poet', author:'Rainer Maria Rilke', status:'favorite'}
+];
+export const pull = [
+  {title:'Making things', description:'Even when nobody asked for them.'},
+  {title:'Being somewhere', description:'The importance of physical place, presence, and unexpected encounters.'},
+  {title:'Human connection', description:'Especially the kind that doesn’t require an agenda.'},
+  {title:'Making room to think', description:'Morning Pages, closing my laptop, and sometimes hiding my phone from myself.'}
 ];

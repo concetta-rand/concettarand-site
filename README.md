@@ -37,13 +37,13 @@ Every subsequent GitHub push triggers a new deployment.
 - Homepage: `src/pages/index.astro`
 - Now: within `src/pages/index.astro`
 - Notes: `src/data/content.js` (each entry has title, slug, date, excerpt and paragraphs)
-- Play projects: `src/data/content.js`
+- Play projects and Things that pull at me: `src/data/content.js`
 - Books: `src/data/content.js`; add `{title:'...', author:'...', status:'reading'}` or `status:'favorite'` and optional `note`.
 - About: `src/pages/about.astro`
 - Work: `src/pages/work.astro`
 - Colors/layout: `src/styles/global.css`
 
-**Important:** The example Notes are starter drafts, not claims of already-published writing. Notes remain unpublished until you enable the section. Reading is intentionally empty until you add real books. Add your own email/LinkedIn URLs in `site.js`.
+**Important:** The example Notes are starter drafts, not claims of already-published writing. Notes remain unpublished until you enable the section. Reading now includes the books you supplied. Add your own email/LinkedIn URLs in `site.js`.
 
 ## Production test
 
@@ -53,3 +53,7 @@ npm run preview
 ```
 
 The build step removes disabled public routes. You can enable Notes later with one toggle and a redeploy.
+
+## V1.1 update (existing GitHub + Cloudflare site)
+
+Replace the existing repository files with the **contents** of this ZIP’s `concettarand-site` folder. Do not create a new repository or Pages project. GitHub commits trigger automatic Cloudflare Pages deployment. Keep `now` and `notes` off in `src/data/site.js` until ready. Accountabillybobs is an idea card, not a working application. Sound Partners is not referenced on the public site.
