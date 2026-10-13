@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import {notes} from '../../data/content.js';
+export function getStaticPaths(){return notes.map(note=>({params:{slug:note.slug},props:{note}}));}
+const {note}=Astro.props;
+---
+<Base title={note.title}><article class="interior article"><a class="small-link" href="/notes/">← ALL NOTES</a><div class="eyebrow">{note.category} / {note.date}</div><h1>{note.title}</h1><div class="prose">{note.body.map(paragraph=><p>{paragraph}</p>)}</div><a class="small-link" href="/notes/">← BACK TO NOTES</a></article></Base>

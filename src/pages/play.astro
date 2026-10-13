@@ -1,0 +1,5 @@
+---
+import Base from '../layouts/Base.astro';
+import {projects} from '../data/content.js';
+---
+<Base title="Play"><section class="interior"><div class="eyebrow">PLAY / EXPERIMENTS & RABBIT HOLES</div><h1>Things I make<br/>because I can.</h1><p class="lede">Useful, unnecessary, and occasionally ridiculous things I build with AI. Not everything needs a business case.</p><div class="project-grid project-grid-page">{projects.map(project=><a class="project-card" href={project.href} target="_blank" rel="noopener noreferrer"><div class={`project-art ${project.art}`}><span>{project.art==='lab'?'◯  ◇  ⤳':'✳  ◌  ✳'}</span></div><div class="project-info"><div class="index">{project.type}</div><h2>{project.title}</h2><p>{project.description}</p><span class="small-link">EXPLORE ↗</span></div></a>)}</div><a href="/reading/" class="reading-callout"><div><span class="eyebrow">ALSO IN PLAY</span><h2>The reading shelf.</h2><p>Books I love, what I'm reading, and ideas that stay with me.</p></div><span class="callout-arrow">↗</span></a></section></Base>

@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';
+import {notes} from '../../data/content.js';
+---
+<Base title="Notes"><section class="interior"><div class="eyebrow">NOTES / THINKING OUT LOUD</div><h1>Things I'm<br/>thinking about.</h1><p class="lede">Ideas, observations, and works in progress. Some more formed than others.</p><div class="note-list note-list-page">{notes.map(note=><a class="note-row" href={`/notes/${note.slug}/`}><div><span class="index">{note.category}</span><h2>{note.title}</h2><p>{note.excerpt}</p></div><time datetime={note.date}>{note.date}</time></a>)}</div></section></Base>
