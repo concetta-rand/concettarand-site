@@ -11,7 +11,7 @@ export const notes = [
   ]}
 ];
 export const projects = [
-  {number:'00', title:'Naming What Matters', type:'An interactive experiment', description:'An exercise in choosing between things that both matter. Explore on your own or with someone else.', href:'/naming-what-matters/', art:'values', status:'live'},
+  {number:'00', title:'Naming What Matters', type:'An interactive experiment', description:'An exercise in picking one, when two things matter. Explore on your own or with someone else.', href:'/naming-what-matters/', art:'values', status:'live'},
   {number:'01', title:'With Margin', type:'Making', description:'A project I’m making and exploring.', href:'https://withmargin.co/', art:'margin', status:'live'},
   {number:'02', title:'Ginormous Cookies', type:'An experiment in making', description:'A family-run bakery experiment featuring oversized cookies and a few ambitious ideas.', href:'https://ginormouscookies.base44.app', art:'cookies', status:'live'},
   {number:'03', title:'Accountabillybobs', type:'Idea in progress', description:'A little experiment in helping friends pair up around shared goals, encourage each other, and follow through.', href:'', art:'buddies', status:'idea'}

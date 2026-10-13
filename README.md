@@ -100,3 +100,12 @@ The assessment request uses a `mailto:` link. It **does not submit data to a ser
 - Making the invisible visible as Work-page theme.
 - Home Reading and About combined into Beyond the Work, with two responsive columns; pull quotes can be added later.
 - Existing Commercial Transition Readiness assessment retained; the separate GTM assessment is not promoted.
+
+
+## V1.6 copy revisions
+
+- The Data That Matters: a single anchor question about the three most important measures, rather than a list of five questions.
+- Beyond the Work: “More than one thing.” and “Books I pick up again, and again.”; reading eyebrow now “Ideas & Reading”.
+- Work: “Good things happen together.” and “I bring ideas to life…”
+- Naming What Matters: updated description on Play and in the exercise itself.
+- With Margin remains the linked project; no replacement with Estimate without a confirmed destination URL.
