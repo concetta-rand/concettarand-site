@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth Readiness Assessment — Concetta Rand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:        #1B2A4A;
+      --navy-light:  #2D4170;
+      --slate:       #8A9BB0;
+      --fog:         #F2F0ED;
+      --white:       #FFFFFF;
+      --rule:        #DDD9D4;
+      --text:        #1B2A4A;
+      --muted:       #6B7A8D;
+      --green:       #2A6B4A;
+      --green-light: #EAF4EE;
+      --amber:       #7A5A1B;
+      --amber-light: #FDF6E3;
+      --red:         #6B1B1B;
+      --red-light:   #FDECEA;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--fog);
+      min-height: 100vh;
+    }
+
+    /* ─── NAV ─────────────────────────────── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+    .nav-logo-name { font-size: 18px; font-weight: 300; letter-spacing: 6px; color: var(--navy); text-transform: uppercase; }
+    .nav-logo-tag  { font-size: 8px; font-weight: 400; letter-spacing: 2.5px; color: var(--slate); text-transform: uppercase; }
+    .nav-back { font-size: 12px; font-weight: 400; color: var(--slate); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+
+    /* ─── LAYOUT ──────────────────────────── */
+    .assessment-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+
+    /* ─── INTRO ───────────────────────────── */
+    .intro {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px;
+      border-radius: 3px;
+      margin-bottom: 32px;
+    }
+    .intro-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 20px;
+    }
+    .intro h1 {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .intro p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #A8BACE;
+    }
+    .intro-meta {
+      display: flex;
+      gap: 32px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .intro-meta-item {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--slate);
+      letter-spacing: 0.5px;
+    }
+    .intro-meta-item strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0;
+      margin-bottom: 2px;
+    }
+
+    /* ─── SECTION LABEL ───────────────────── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .section-divider-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ─── PROGRESS ────────────────────────── */
+    .progress-bar-wrap {
+      background: var(--white);
+      border-radius: 3px;
+      padding: 20px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .progress-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--slate);
+      white-space: nowrap;
+      min-width: 100px;
+    }
+    .progress-track {
+      flex: 1;
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    /* ─── QUESTION CARD ───────────────────── */
+    .question-card {
+      background: var(--white);
+      border-radius: 3px;
+      padding: 48px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .question-card.active { display: block; }
+
+    .q-number {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+    .q-signal {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--fog);
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .q-text {
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--navy);
+      margin-bottom: 36px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .option:hover { border-color: var(--navy); background: #F7F8FA; }
+    .option.selected { border-color: var(--navy); background: #EEF1F6; }
+
+    .option-marker {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--fog);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .option.selected .option-marker {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .option-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    /* ─── NAV BUTTONS ─────────────────────── */
+    .q-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .btn {
+      padding: 12px 32px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover { background: var(--navy-light); }
+    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+    .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ─── RESULTS ─────────────────────────── */
+    #results { display: none; }
+
+    .results-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 56px 48px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .results-stage-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .results-stage-name {
+      font-size: 38px;
+      font-weight: 200;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .results-score-line {
+      font-size: 14px;
+      font-weight: 300;
+      color: #A8BACE;
+    }
+
+    .results-body {
+      background: var(--white);
+      border-radius: 3px;
+      padding: 48px;
+      margin-bottom: 16px;
+    }
+    .results-body h2 {
+      font-size: 22px;
+      font-weight: 300;
+      margin-bottom: 20px;
+      color: var(--navy);
+    }
+    .results-body p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #3D4F63;
+      margin-bottom: 16px;
+    }
+
+    /* Section breakdown */
+    .section-breakdown {
+      margin: 28px 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 28px;
+    }
+    .section-breakdown h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 20px;
+    }
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .score-row-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      min-width: 200px;
+    }
+    .score-row-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .score-row-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+    .fill-strong { background: var(--green); }
+    .fill-mid    { background: var(--amber); }
+    .fill-weak   { background: #B03030; }
+
+    .score-row-val {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--navy);
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* Priority list */
+    .results-priorities {
+      margin-top: 28px;
+      border-top: 1px solid var(--rule);
+      padding-top: 28px;
+    }
+    .results-priorities h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .priority-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .priority-item:last-child { border-bottom: none; }
+    .priority-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--navy);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .priority-text {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* CTA */
+    .results-cta {
+      background: var(--navy);
+      border-radius: 3px;
+      padding: 48px;
+      text-align: center;
+    }
+    .results-cta h3 {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .results-cta p {
+      font-size: 15px;
+      font-weight: 300;
+      color: #A8BACE;
+      margin-bottom: 28px;
+      line-height: 1.65;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .results-cta .btn-primary {
+      background: var(--white);
+      color: var(--navy);
+      display: inline-block;
+      text-decoration: none;
+    }
+    .results-cta .btn-primary:hover { background: #EEF1F6; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 24px; }
+      .assessment-wrap { padding: 40px 16px 72px; }
+      .intro, .question-card, .results-body, .results-header, .results-cta { padding: 32px 24px; }
+      .score-row-label { min-width: 140px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-name">Concetta Rand</span>
+    <span class="nav-logo-tag">Founder-Led Growth</span>
+  </a>
+  <a href="/work/" class="nav-back">← Back to Work</a>
+</nav>
+
+<div class="assessment-wrap">
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p class="intro-label">Growth Readiness Assessment</p>
+    <h1>How much of your growth depends on you?</h1>
+    <p>Twelve questions across six areas. Answer based on what's actually true in your business today — not what you're planning to build. There are no right answers, only honest ones. The results will show you where to focus.</p>
+    <div class="intro-meta">
+      <div class="intro-meta-item"><strong>12</strong> Questions</div>
+      <div class="intro-meta-item"><strong>&lt;10</strong> Minutes</div>
+      <div class="intro-meta-item"><strong>6</strong> Focus areas</div>
+      <div class="intro-meta-item"><strong>4</strong> Stage outputs</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <span class="progress-label" id="progress-label">Question 1 of 12</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width: 8%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <form id="assessment-form">
+
+    <!-- ── SECTION 1: FOUNDER DEPENDENCY ─────────────────────────── -->
+
+    <!-- Q1 -->
+    <div class="question-card active" data-q="1" data-section="0">
+      <p class="q-number">Question 1 of 12</p>
+      <p class="q-signal">Founder Dependency</p>
+      <h2 class="q-text">How do most new customers find their way to your business?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q1" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">Almost entirely through my personal network, relationships, or reputation. I am the primary reason new clients come in the door.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q1" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">A mix — some come through me, some through referrals, word of mouth, or marketing, but I'm still the closer or key contact for most.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q1" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Most new customers come through systems or channels my team manages — I'm not the primary driver of new business.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <span></span>
+        <button type="button" class="btn btn-primary" onclick="nextQ(1)" id="next-1" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" data-q="2" data-section="0">
+      <p class="q-number">Question 2 of 12</p>
+      <p class="q-signal">Founder Dependency</p>
+      <h2 class="q-text">If you stepped away from the business for 60 days, what would happen to new sales?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q2" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">They would stop or slow to a trickle. The pipeline and relationships depend on me being present and available.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q2" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">They would slow significantly. Some existing clients would stay but new business would be much harder without me.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q2" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">The team could manage most of the pipeline and close new business. My absence would create some friction but not a crisis.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(2)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(2)" id="next-2" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: CUSTOMER ACQUISITION ───────────────────────── -->
+
+    <!-- Q3 -->
+    <div class="question-card" data-q="3" data-section="1">
+      <p class="q-number">Question 3 of 12</p>
+      <p class="q-signal">Customer Acquisition</p>
+      <h2 class="q-text">Do you have a defined, repeatable process for finding and converting new customers?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q3" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">No. Every new customer comes through a different path. There's no defined process — it's different every time and mostly lives in my head.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q3" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">We have a rough approach but it's not written down, consistently followed, or something others could replicate without me involved.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q3" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. We have a documented process — from first contact to close — that the team follows and that produces consistent results.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(3)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(3)" id="next-3" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card" data-q="4" data-section="1">
+      <p class="q-number">Question 4 of 12</p>
+      <p class="q-signal">Customer Acquisition</p>
+      <h2 class="q-text">Can you trace your marketing or outreach spend to actual new customers?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q4" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">No. We spend on marketing but can't connect it to specific wins. We do what we've always done and hope it's working.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q4" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">Partially. Some channels feel like they're working — trade shows, referrals, word of mouth — but we haven't measured it with real data.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q4" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. We know where our customers come from and we use that data to decide where to invest in growth.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(4)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(4)" id="next-4" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 3: CUSTOMER RETENTION & GROWTH ─────────────────── -->
+
+    <!-- Q5 -->
+    <div class="question-card" data-q="5" data-section="2">
+      <p class="q-number">Question 5 of 12</p>
+      <p class="q-signal">Customer Retention & Growth</p>
+      <h2 class="q-text">Do you know your customer retention rate — and does someone review it regularly?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q5" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">No. I have a general sense of who stayed and who left, but we don't calculate it or track it as a metric.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q5" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">Roughly. We could pull the number but it's not consistently tracked or reviewed as part of how we run the business.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q5" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. We know our retention rate and review it at least quarterly. It's a metric we actively manage.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(5)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(5)" id="next-5" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card" data-q="6" data-section="2">
+      <p class="q-number">Question 6 of 12</p>
+      <p class="q-signal">Customer Retention & Growth</p>
+      <h2 class="q-text">When existing customers expand their business with you, how does that typically happen?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q6" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">They reach out to me directly, or I reach out to them personally. Expansion depends on my relationship with the client.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q6" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">Mix — some growth happens through the team, some through me. There's no consistent process for identifying or pursuing expansion.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q6" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">The team identifies and manages account growth through a defined process. Expansion isn't dependent on me being personally involved.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(6)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(6)" id="next-6" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 4: TEAM & CAPABILITY ──────────────────────────── -->
+
+    <!-- Q7 -->
+    <div class="question-card" data-q="7" data-section="3">
+      <p class="q-number">Question 7 of 12</p>
+      <p class="q-signal">Team & Capability</p>
+      <h2 class="q-text">Does your team have defined commercial roles — or does everyone pitch in when growth work needs to happen?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q7" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">Everyone pitches in. There are no defined commercial roles. Growth work gets done by whoever is available, which is mostly me.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q7" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">There are informal roles and people own different pieces, but accountability for growth outcomes isn't clearly defined.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q7" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">We have defined commercial roles with clear ownership. People know what they're responsible for and what success looks like.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(7)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(7)" id="next-7" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-card" data-q="8" data-section="3">
+      <p class="q-number">Question 8 of 12</p>
+      <p class="q-signal">Team & Capability</p>
+      <h2 class="q-text">If you needed to hire a dedicated sales or marketing person today, could you clearly describe what they would own?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q8" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">Not really. I'm not sure what the role would look like separated from what I currently do. The work is too intertwined with me personally.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q8" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">I have a rough idea but haven't defined it. I'd figure out the details once I found the right person.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q8" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. I know exactly what the role would own, what success looks like in year one, and what kind of person would thrive in it.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(8)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(8)" id="next-8" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 5: TOOLS & INFRASTRUCTURE ─────────────────────── -->
+
+    <!-- Q9 -->
+    <div class="question-card" data-q="9" data-section="4">
+      <p class="q-number">Question 9 of 12</p>
+      <p class="q-signal">Tools & Infrastructure</p>
+      <h2 class="q-text">Where does your customer and prospect information live?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q9" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">In my head, my phone contacts, or a spreadsheet I maintain. If I left, most of it would go with me.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q9" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">In a CRM or contact system, but it's not consistently used or up to date. The data isn't something we fully trust.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q9" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">In a system the whole team accesses and maintains. The data is reasonably clean and we use it to make decisions.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(9)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(9)" id="next-9" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-card" data-q="10" data-section="4">
+      <p class="q-number">Question 10 of 12</p>
+      <p class="q-signal">Tools & Infrastructure</p>
+      <h2 class="q-text">Do you use tools to automate or streamline your marketing, outreach, or customer communications?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q10" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">No. Most customer communication is done manually — email, phone, in person. Nothing is automated.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q10" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">We use a few tools but they're disconnected, underutilized, or chosen based on what was easy to set up, not what actually works together.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q10" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. We have tools in place that save time, connect our data, and give us visibility into what's working.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(10)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(10)" id="next-10" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 6: VISIBILITY & METRICS ───────────────────────── -->
+
+    <!-- Q11 -->
+    <div class="question-card" data-q="11" data-section="5">
+      <p class="q-number">Question 11 of 12</p>
+      <p class="q-signal">Visibility & Metrics</p>
+      <h2 class="q-text">What does your sales pipeline look like right now?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q11" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">I know what's in progress, but it's in my head or scattered across emails and notes. Nothing is documented in a way others could use.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q11" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">There's something that resembles a pipeline — a spreadsheet or basic CRM — but the data isn't reliable or consistently updated.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q11" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">We have an active, documented pipeline with defined stages, expected close dates, and data the team trusts for forecasting.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(11)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="nextQ(11)" id="next-11" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="question-card" data-q="12" data-section="5">
+      <p class="q-number">Question 12 of 12</p>
+      <p class="q-signal">Visibility & Metrics</p>
+      <h2 class="q-text">Do you regularly review commercial metrics — new customers, retention, revenue trends — with your team?</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q12" value="0" hidden>
+          <div class="option-marker">A</div>
+          <div class="option-text">No. We look at the P&L but don't have a regular cadence for commercial metrics. I know where things stand but it's not a team conversation.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q12" value="1" hidden>
+          <div class="option-marker">B</div>
+          <div class="option-text">Sometimes. We have some numbers we look at, but the meetings are inconsistent, the definitions vary, and we don't always agree on what the data means.</div>
+        </label>
+        <label class="option">
+          <input type="radio" name="q12" value="2" hidden>
+          <div class="option-marker">C</div>
+          <div class="option-text">Yes. We have a regular review cadence with a shared set of metrics. The team debates what to do — not what the numbers are.</div>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button type="button" class="btn btn-ghost" onclick="prevQ(12)">← Back</button>
+        <button type="button" class="btn btn-primary" onclick="showResults()" id="next-12" disabled>See My Results →</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- RESULTS -->
+  <div id="results">
+
+    <div class="results-header">
+      <p class="results-stage-label">Your Growth Readiness Stage</p>
+      <h2 class="results-stage-name" id="res-stage-name">—</h2>
+      <p class="results-score-line" id="res-score-line">Score: — / 24</p>
+    </div>
+
+    <div class="results-body">
+      <h2 id="res-headline">—</h2>
+      <div id="res-description"></div>
+
+      <div class="section-breakdown">
+        <h3>Score by focus area</h3>
+        <div id="res-score-bars"></div>
+      </div>
+
+      <div class="results-priorities">
+        <h3>Where to focus first</h3>
+        <div id="res-priorities"></div>
+      </div>
+    </div>
+
+    <div class="results-cta">
+      <h3>Want to talk through what this means for your business?</h3>
+      <p>These results reflect a snapshot. A 30-minute conversation will give you a more complete picture — and a clear sense of where to start.</p>
+      <a href="mailto:concetta@advancegtm.com?subject=Growth Readiness Assessment — Let's Talk" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Schedule a Conversation</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const answers = {};
+  const totalQ = 12;
+
+  const sections = [
+    { label: 'Founder Dependency',          qs: [1,2] },
+    { label: 'Customer Acquisition',         qs: [3,4] },
+    { label: 'Customer Retention & Growth',  qs: [5,6] },
+    { label: 'Team & Capability',            qs: [7,8] },
+    { label: 'Tools & Infrastructure',       qs: [9,10] },
+    { label: 'Visibility & Metrics',         qs: [11,12] },
+  ];
+
+  // Auto-select on option click
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const radio = this.querySelector('input[type="radio"]');
+      radio.checked = true;
+      const card = this.closest('.question-card');
+      const qNum = parseInt(card.dataset.q);
+      card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+      answers[qNum] = parseInt(radio.value);
+      const nextBtn = document.getElementById('next-' + qNum);
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  });
+
+  function updateProgress(q) {
+    const pct = Math.round((q / totalQ) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = 'Question ' + q + ' of ' + totalQ;
+  }
+
+  function nextQ(current) {
+    document.querySelector('[data-q="' + current + '"]').classList.remove('active');
+    const next = current + 1;
+    if (next <= totalQ) {
+      document.querySelector('[data-q="' + next + '"]').classList.add('active');
+      updateProgress(next);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function prevQ(current) {
+    document.querySelector('[data-q="' + current + '"]').classList.remove('active');
+    const prev = current - 1;
+    if (prev >= 1) {
+      document.querySelector('[data-q="' + prev + '"]').classList.add('active');
+      updateProgress(prev);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function showResults() {
+    // Tally total and section scores
+    let total = 0;
+    const sectionScores = sections.map(sec => {
+      const raw = sec.qs.reduce((sum, q) => sum + (answers[q] !== undefined ? answers[q] : 0), 0);
+      total += raw;
+      return { label: sec.label, score: raw, max: sec.qs.length * 2 };
+    });
+
+    const maxScore = totalQ * 2; // 24
+
+    // Stage definitions
+    let stageName, headline, description, priorities;
+
+    if (total <= 6) {
+      stageName   = 'Stage 1 — Founder-Dependent';
+      headline    = 'The business runs on you. That\'s how it got here — but it\'s also the ceiling.';
+      description = `<p>You built this by being the best person in every room. Your relationships, your reputation, your presence — those things created real value. But right now the business can't grow faster than you can, and it can't run without you in it. That's not a criticism. It's the most common place for a founder-led business to land after ten or fifteen years of doing it all yourself.</p>
+      <p>The work at this stage isn't about hiring or spending more on marketing. It's about understanding what you've built well enough to start separating the business from yourself — documenting what lives only in your head, identifying which customers depend on you personally, and getting clear on where the real gaps are before trying to fill them.</p>`;
+      priorities = [
+        'Map where your revenue actually comes from — by customer, channel, and relationship — before making any growth decisions',
+        'Identify which customer relationships are with the business versus with you personally. That gap is your biggest risk.',
+        'Begin documenting the way you sell — the questions you ask, the objections you handle, what you know about each customer. That knowledge needs to live outside your head.',
+        'Don\'t hire yet. Understand the foundation first.',
+      ];
+    } else if (total <= 12) {
+      stageName   = 'Stage 2 — Building Momentum';
+      headline    = 'The pieces are starting to exist. The gap is that they don\'t run without you yet.';
+      description = `<p>You've built more infrastructure than most businesses at this stage — some processes, maybe a CRM, some sense of where customers come from. But the founder is still the primary growth driver, and most of the commercial knowledge still lives with you. The team can execute, but they can't originate or manage the full commercial cycle independently.</p>
+      <p>The risk at this stage is adding complexity before the basics are locked in. A new marketing program, a new hire, a new technology — none of those help if the foundation isn't solid. The priority is turning what's in your head into something the team can own and run.</p>`;
+      priorities = [
+        'Write down your sales process — from first conversation to signed agreement. If you can\'t document it, you can\'t hand it off.',
+        'Clean up your customer and prospect data. If it only exists in your phone or your memory, it\'s not an asset — it\'s a liability.',
+        'Define what "good" looks like for 2–3 commercial metrics: new customer rate, retention, pipeline volume. Start measuring consistently.',
+        'Have an honest conversation with your team about where they feel stuck without you. That\'s where to build first.',
+      ];
+    } else if (total <= 18) {
+      stageName   = 'Stage 3 — Infrastructure Taking Shape';
+      headline    = 'You\'ve built real foundations. The opportunity is making them team-owned, not founder-adjacent.';
+      description = `<p>The commercial basics exist — your acquisition process is documented, data is reasonably clean, the team has defined roles, and you review metrics with some regularity. This is meaningfully ahead of most founder-led businesses. The foundation is real.</p>
+      <p>What's left is the transition from "infrastructure that exists" to "infrastructure the team actually runs." The question at this stage is: if you stepped back, what would require your judgment versus what would happen automatically? Every answer to that question is a gap to close.</p>`;
+      priorities = [
+        'Audit what still runs through you. For each commercial decision, ask: could someone on my team make this without me? If not, why not?',
+        'Invest in the tools that give your team visibility without you translating the data. Dashboards, automated reports, shared pipeline views.',
+        'Develop the team member who is closest to owning your commercial responsibilities. Invest in them intentionally.',
+        'Review your tech stack. The right tools at this stage can do significantly more than most businesses realize — at a cost that makes sense.',
+      ];
+    } else {
+      stageName   = 'Stage 4 — Ready to Scale';
+      headline    = 'You\'ve built something that can outlast you. The work now is making sure it does.';
+      description = `<p>The commercial engine runs without you needing to be in every room. Revenue is understood, data is trusted, the team has clear ownership, and you have visibility into the business through metrics — not just instinct. This is rare for a founder-led business, and it's a genuine competitive advantage.</p>
+      <p>The remaining question is transferability. Not whether the business works today — it does — but whether a new person stepping into a commercial leadership role could get up to speed in 30 days or 6 months. The answer to that question determines your options: for growth, for bringing on investors, for eventually stepping back on your own terms.</p>`;
+      priorities = [
+        'Stress-test the documentation. Have someone who doesn\'t know the business try to run the commercial process from what\'s written down. Find the gaps.',
+        'Make sure your metrics and dashboards are self-service — not dependent on someone pulling numbers manually every month.',
+        'Assess where you\'re still the single point of contact for key customers. Even at this stage, there may be relationships that need transitioning.',
+        'You\'re in a position to be intentional about what comes next. Growth capital, a strategic partner, or simply scaling on your own terms — the foundation supports all of it.',
+      ];
+    }
+
+    // Render stage
+    document.getElementById('res-stage-name').textContent = stageName;
+    document.getElementById('res-score-line').textContent = 'Score: ' + total + ' / ' + maxScore;
+    document.getElementById('res-headline').textContent = headline;
+    document.getElementById('res-description').innerHTML = description;
+
+    // Section score bars
+    let barsHTML = '';
+    sectionScores.forEach(sec => {
+      const pct = Math.round((sec.score / sec.max) * 100);
+      let fillClass = 'fill-weak';
+      if (pct >= 75) fillClass = 'fill-strong';
+      else if (pct >= 40) fillClass = 'fill-mid';
+      barsHTML += `<div class="score-row">
+        <span class="score-row-label">${sec.label}</span>
+        <div class="score-row-bar"><div class="score-row-fill ${fillClass}" style="width:${pct}%"></div></div>
+        <span class="score-row-val">${sec.score}/${sec.max}</span>
+      </div>`;
+    });
+    document.getElementById('res-score-bars').innerHTML = barsHTML;
+
+    // Priorities
+    let priHTML = '';
+    priorities.forEach(p => {
+      priHTML += `<div class="priority-item"><div class="priority-dot"></div><div class="priority-text">${p}</div></div>`;
+    });
+    document.getElementById('res-priorities').innerHTML = priHTML;
+
+    // Show results
+    document.getElementById('assessment-form').style.display = 'none';
+    document.querySelector('.progress-bar-wrap').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

@@ -13,3 +13,18 @@
 .tools-callout{margin-bottom:25px;background:#f5f4ee}
 .tools-callout h2{font-family:var(--serif);font-weight:400}
 @media(max-width:520px){.pull-grid{grid-template-columns:1fr}.hero-actions{flex-wrap:wrap}}
+
+/* V1.2 — community acknowledgments */
+.community-section {margin: 3.5rem 0 2.5rem;}
+.community-section > p {max-width: 42rem; margin: 1rem 0 1.4rem;}
+.community-list {display:flex; flex-wrap:wrap; gap:.65rem;}
+.community-list span {display:inline-block; padding:.65rem .9rem; border:1px solid #d8ded9; background:#f7f9f6; border-radius:3px; font-size:.9rem;}
+.tools-callout .button {margin-top:1rem;}
+
+.book-grid {display:flex;flex-wrap:wrap;gap:1.2rem;align-items:flex-start;}
+.book-grid .section-heading {flex-basis:100%;}
+.book-tile {display:flex;flex-direction:column;gap:.35rem;width:clamp(140px,28%,205px);text-decoration:none;color:inherit;}
+.book-tile strong {font-size:.9rem;} .book-tile > small {color:#63716d;}
+.book-art {aspect-ratio: 2 / 3;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem .9rem;background:#dbe7e0;border:1px solid #b8c8bf;box-shadow:5px 5px 0 #e9e8df;color:#2e4940;font-family:Georgia,serif;font-size:1.2rem;line-height:1.25;}
+.book-tile:nth-child(3n) .book-art {background:#e6dfd4;} .book-tile:nth-child(3n + 1) .book-art {background:#e3e6ec;}
+.book-art small {font-family:Arial,sans-serif;font-size:.68rem;}

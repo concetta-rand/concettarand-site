@@ -57,3 +57,11 @@ The build step removes disabled public routes. You can enable Notes later with o
 ## V1.1 update (existing GitHub + Cloudflare site)
 
 Replace the existing repository files with the **contents** of this ZIP’s `concettarand-site` folder. Do not create a new repository or Pages project. GitHub commits trigger automatic Cloudflare Pages deployment. Keep `now` and `notes` off in `src/data/site.js` until ready. Accountabillybobs is an idea card, not a working application. Sound Partners is not referenced on the public site.
+
+
+## V1.2 additions
+- LinkedIn footer link and community acknowledgments on About.
+- Winning with Data workshop example on Work.
+- Interactive, 12-question Growth Readiness Assessment at `/assessment/`, adapted from the supplied `advance-assessment-v2.html`; original question and score logic retained.
+- Linked typographic book-cover cards on Reading. These are **not actual publisher cover images**; swap for licensed cover images later if desired.
+- Community names are deliberately unlinked until official destination URLs are confirmed.
