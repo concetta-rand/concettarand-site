@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commercial Transition Readiness — Concetta Rand</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --navy:        #1B2A4A;
-      --navy-light:  #2D4170;
-      --slate:       #8A9BB0;
-      --fog:         #F2F0ED;
+      --navy:        #202c27;
+      --navy-light:  #38634e;
+      --slate:       #60766b;
+      --fog:         #f9f8f4;
       --white:       #FFFFFF;
-      --rule:        #DDD9D4;
-      --text:        #1B2A4A;
-      --muted:       #6B7A8D;
+      --rule:        #e3e6df;
+      --text:        #202c27;
+      --muted:       #606b65;
       --green:       #2A6B4A;
       --green-light: #EAF4EE;
       --amber:       #7A5A1B;
@@ -26,7 +26,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: var(--text);
       background: var(--fog);
       min-height: 100vh;
@@ -81,7 +81,7 @@
       font-size: 15px;
       font-weight: 300;
       line-height: 1.7;
-      color: #A8BACE;
+      color: #d6e7dc;
     }
     .intro-meta {
       display: flex;
@@ -211,8 +211,8 @@
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s;
     }
-    .option:hover { border-color: var(--navy); background: #F7F8FA; }
-    .option.selected { border-color: var(--navy); background: #EEF1F6; }
+    .option:hover { border-color: var(--navy); background: #f5f8f4; }
+    .option.selected { border-color: var(--navy); background: #edf3ed; }
 
     .option-marker {
       min-width: 28px;
@@ -294,7 +294,7 @@
     .results-score-line {
       font-size: 14px;
       font-weight: 300;
-      color: #A8BACE;
+      color: #d6e7dc;
     }
 
     .results-body {
@@ -313,7 +313,7 @@
       font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
-      color: #3D4F63;
+      color: #536159;
       margin-bottom: 16px;
     }
 
@@ -420,7 +420,7 @@
     .results-cta p {
       font-size: 15px;
       font-weight: 300;
-      color: #A8BACE;
+      color: #d6e7dc;
       margin-bottom: 28px;
       line-height: 1.65;
       max-width: 480px;
@@ -433,7 +433,7 @@
       display: inline-block;
       text-decoration: none;
     }
-    .results-cta .btn-primary:hover { background: #EEF1F6; }
+    .results-cta .btn-primary:hover { background: #edf3ed; }
 
     @media (max-width: 600px) {
       nav { padding: 0 24px; }
@@ -441,16 +441,17 @@
       .intro, .question-card, .results-body, .results-header, .results-cta { padding: 32px 24px; }
       .score-row-label { min-width: 140px; font-size: 11px; }
     }
+    .site-links{display:flex;gap:24px;flex-wrap:wrap}.site-links a{font-size:12px;text-decoration:none;color:var(--text)}.site-links a:hover{text-decoration:underline}.nav-logo-name{font-weight:700;letter-spacing:2px;font-size:11px}.nav-logo-tag{display:none}.intro h1{font-family:'Libre Baskerville',Georgia,serif;font-weight:400}.assessment-wrap{padding-top:48px} @media(max-width:600px){nav{height:auto;min-height:64px;padding:18px 22px;gap:16px;flex-wrap:wrap}.site-links{gap:15px}}
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="/" class="nav-logo">
     <span class="nav-logo-name">Concetta Rand</span>
     <span class="nav-logo-tag">Building · Connecting · Translating</span>
   </a>
-  <a href="/work/" class="nav-back">← Back to Work</a>
+  <div class="site-links"><a href="/">Home</a><a href="/work/">Work</a><a href="/play/">Play</a><a href="/about/">About</a></div>
 </nav>
 
 <div class="assessment-wrap">

@@ -28,3 +28,14 @@
 .book-art {aspect-ratio: 2 / 3;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem .9rem;background:#dbe7e0;border:1px solid #b8c8bf;box-shadow:5px 5px 0 #e9e8df;color:#2e4940;font-family:Georgia,serif;font-size:1.2rem;line-height:1.25;}
 .book-tile:nth-child(3n) .book-art {background:#e6dfd4;} .book-tile:nth-child(3n + 1) .book-art {background:#e3e6ec;}
 .book-art small {font-family:Arial,sans-serif;font-size:.68rem;}
+
+/* V1.5: a quieter ending to the homepage; space for a future editorial pull quote. */
+.beyond-section{background:#eef3ed;padding-top:47px;padding-bottom:56px}
+.beyond-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:25px}
+.beyond-panel{padding:8px 46px 4px 0}
+.beyond-panel+.beyond-panel{border-left:1px solid #cbd9ce;padding-left:46px;padding-right:0}
+.beyond-panel h2{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.3vw,29px);line-height:1.35;margin:17px 0 12px}
+.beyond-panel p{font-size:13px;line-height:1.85;color:var(--muted);max-width:420px;margin:0 0 22px}
+.work-theme{max-width:750px;font-size:15px;line-height:1.85;color:var(--muted);border-left:3px solid var(--mint);padding-left:20px;margin:27px 0 0}
+.work-theme strong{color:var(--ink)}
+@media(max-width:700px){.beyond-grid{grid-template-columns:1fr;gap:28px}.beyond-panel{padding:0}.beyond-panel+.beyond-panel{border-left:0;border-top:1px solid #cbd9ce;padding:28px 0 0}}

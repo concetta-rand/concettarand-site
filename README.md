@@ -83,3 +83,20 @@ Replace the existing repository files with the **contents** of this ZIP’s `con
 
 ### Important email limitation
 The assessment request uses a `mailto:` link. It **does not submit data to a server**. The visitor must have a configured email application and click Send. A future hosted form or email API would be needed for reliable automatic submission and delivery.
+
+
+## V1.4 editorial refinements
+- Consistent navigation on Naming What Matters and Commercial Transition Readiness.
+- Assessment palette aligned to main site.
+- Data That Matters includes five sample intake questions.
+- Tell Me About Yourself reframed as Finding the Story, with redirect.
+- Removed Smith Middle School PTSA from public community list.
+- Getting on the Same Page framed as a facilitated organizational workshop, not a duplicate interactive values quiz.
+
+
+## V1.5 editorial updates
+- The Alignment Gap (new URL `/the-alignment-gap/`, old URL redirects).
+- Telling Your Story (new URL `/telling-your-story/`, old URL redirects), with long-career narrative introduction.
+- Making the invisible visible as Work-page theme.
+- Home Reading and About combined into Beyond the Work, with two responsive columns; pull quotes can be added later.
+- Existing Commercial Transition Readiness assessment retained; the separate GTM assessment is not promoted.
