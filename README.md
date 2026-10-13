@@ -65,3 +65,21 @@ Replace the existing repository files with the **contents** of this ZIP’s `con
 - Interactive, 12-question Growth Readiness Assessment at `/assessment/`, adapted from the supplied `advance-assessment-v2.html`; original question and score logic retained.
 - Linked typographic book-cover cards on Reading. These are **not actual publisher cover images**; swap for licensed cover images later if desired.
 - Community names are deliberately unlinked until official destination URLs are confirmed.
+
+## Naming What Matters update
+- New interactive tool at `/naming-what-matters/`, linked from Play.
+- Solo and two-person modes, both supporting customized values.
+- Print/PDF results include a light Concetta Rand footer and site link.
+- Branded CSV results include definitions, discussion prompts, and concettarand.com contact information.
+- Old `/finding-the-words/` route redirects to the new name.
+- This package builds on the Values Preview site. It does not yet include the other planned V1.3 changes to the commercial assessment and Work copy.
+
+
+## V1.3 additions
+- The Data That Matters, Getting on the Same Page, Tell Me About Yourself (Work)
+- Commercial Transition Readiness assessment with six focus areas, snapshot and manual email request
+- Naming What Matters interactive tool under Play (individual and partner modes, custom values, branded exports)
+- Public contact email: hello@concettarand.com (Cloudflare Email Routing must be configured)
+
+### Important email limitation
+The assessment request uses a `mailto:` link. It **does not submit data to a server**. The visitor must have a configured email application and click Send. A future hosted form or email API would be needed for reliable automatic submission and delivery.

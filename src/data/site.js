@@ -2,7 +2,7 @@
 export const site = {
   name: 'Concetta Rand',
   domain: 'concettarand.com',
-  email: '', // Add your public email address to show an Email link.
+  email: 'hello@concettarand.com', // Add your public email address to show an Email link.
   linkedin: 'https://www.linkedin.com/in/concettar/', // Add your full LinkedIn profile URL to show a LinkedIn link.
   sections: {
     now: false,

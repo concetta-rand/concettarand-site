@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Growth Readiness Assessment — Concetta Rand</title>
+  <title>Commercial Transition Readiness — Concetta Rand</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -448,7 +448,7 @@
 <nav>
   <a href="#" class="nav-logo">
     <span class="nav-logo-name">Concetta Rand</span>
-    <span class="nav-logo-tag">Founder-Led Growth</span>
+    <span class="nav-logo-tag">Building · Connecting · Translating</span>
   </a>
   <a href="/work/" class="nav-back">← Back to Work</a>
 </nav>
@@ -457,9 +457,9 @@
 
   <!-- INTRO -->
   <div class="intro">
-    <p class="intro-label">Growth Readiness Assessment</p>
-    <h1>How much of your growth depends on you?</h1>
-    <p>Twelve questions across six areas. Answer based on what's actually true in your business today — not what you're planning to build. There are no right answers, only honest ones. The results will show you where to focus.</p>
+    <p class="intro-label">Commercial Transition Readiness</p>
+    <h1>What happens when the founder steps back?</h1>
+    <p>For founders preparing to step back and leaders preparing to step in. Twelve questions across six commercial areas help establish a baseline of constraints, capacity, and capabilities. Answer based on what is true today (not what is planned). This is a conversation starter, not a formal diagnosis.</p>
     <div class="intro-meta">
       <div class="intro-meta-item"><strong>12</strong> Questions</div>
       <div class="intro-meta-item"><strong>&lt;10</strong> Minutes</div>
@@ -823,7 +823,7 @@
       </div>
       <div class="q-nav">
         <button type="button" class="btn btn-ghost" onclick="prevQ(12)">← Back</button>
-        <button type="button" class="btn btn-primary" onclick="showResults()" id="next-12" disabled>See My Results →</button>
+        <button type="button" class="btn btn-primary" onclick="showResults()" id="next-12" disabled>See My Snapshot →</button>
       </div>
     </div>
 
@@ -833,7 +833,7 @@
   <div id="results">
 
     <div class="results-header">
-      <p class="results-stage-label">Your Growth Readiness Stage</p>
+      <p class="results-stage-label">Your Commercial Transition Readiness Snapshot</p>
       <h2 class="results-stage-name" id="res-stage-name">—</h2>
       <p class="results-score-line" id="res-score-line">Score: — / 24</p>
     </div>
@@ -843,20 +843,27 @@
       <div id="res-description"></div>
 
       <div class="section-breakdown">
-        <h3>Score by focus area</h3>
+        <h3>Six commercial focus areas</h3>
         <div id="res-score-bars"></div>
       </div>
 
       <div class="results-priorities">
-        <h3>Where to focus first</h3>
+        <h3>Signals worth investigating</h3>
         <div id="res-priorities"></div>
       </div>
     </div>
 
     <div class="results-cta">
-      <h3>Want to talk through what this means for your business?</h3>
-      <p>These results reflect a snapshot. A 30-minute conversation will give you a more complete picture — and a clear sense of where to start.</p>
-      <a href="mailto:concetta@advancegtm.com?subject=Growth Readiness Assessment — Let's Talk" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Schedule a Conversation</a>
+      <h3>Request your Transition Readiness Brief</h3>
+      <p>A closer look at the signals, potential handoff risks, existing strengths, and three questions for the founder and incoming leadership team. Prepared manually (not an automated report or mailing-list signup).</p>
+      <form id="brief-request" style="display:grid;gap:12px;max-width:490px;text-align:left" onsubmit="return requestBrief(event)">
+        <label>Your email <input id="brief-email" type="email" required placeholder="you@example.com" style="display:block;width:100%;padding:12px;margin-top:5px"></label>
+        <label>Name (optional) <input id="brief-name" type="text" maxlength="100" style="display:block;width:100%;padding:12px;margin-top:5px"></label>
+        <label>Your perspective <select id="brief-role" style="display:block;width:100%;padding:12px;margin-top:5px"><option>Founder</option><option>Incoming leader</option><option>Other stakeholder</option></select></label>
+        <label style="display:flex;align-items:center;gap:10px"><input id="brief-discuss" type="checkbox"> I'd also like to discuss my results</label>
+        <button class="btn btn-primary" type="submit">Prepare email request →</button>
+        <small>This opens your email app with your answers attached as text. Please press Send to submit your request. No data is sent automatically.</small>
+      </form>
     </div>
 
   </div>
@@ -865,6 +872,30 @@
 
 <script>
   const answers = {};
+  function requestBrief(event) {
+    event.preventDefault();
+    if (!window.assessmentSummary) return false;
+    const s = window.assessmentSummary;
+    const questions = Array.from(document.querySelectorAll('.question-card')).map((card, i) => {
+      const chosen = card.querySelector('input[type="radio"]:checked');
+      const label = chosen?.closest('label');
+      return (i+1) + '. ' + card.querySelector('.q-text').textContent.trim() + '\n   ' + (label?.querySelector('.option-text')?.textContent.trim() || 'Not answered');
+    }).join('\n\n');
+    const body = [
+      'Please prepare my Commercial Transition Readiness Brief.',
+      'Name: ' + document.getElementById('brief-name').value.trim(),
+      'Email: ' + document.getElementById('brief-email').value.trim(),
+      'Perspective: ' + document.getElementById('brief-role').value,
+      'Interested in discussing results: ' + (document.getElementById('brief-discuss').checked ? 'Yes' : 'No'),
+      'Readiness stage: ' + s.stageName,
+      'Score: ' + s.total + '/24',
+      'Focus area scores:',
+      ...s.sectionScores.map(x => x.label + ': ' + x.score + '/' + x.max),
+      'Responses:', questions
+    ].join('\n\n');
+    window.location.href = 'mailto:hello@concettarand.com?subject=' + encodeURIComponent('Transition Readiness Brief request') + '&body=' + encodeURIComponent(body);
+    return false;
+  }
   const totalQ = 12;
 
   const sections = [
@@ -943,7 +974,7 @@
         'Don\'t hire yet. Understand the foundation first.',
       ];
     } else if (total <= 12) {
-      stageName   = 'Stage 2 — Building Momentum';
+      stageName   = 'Stage 2 — Emerging Structure';
       headline    = 'The pieces are starting to exist. The gap is that they don\'t run without you yet.';
       description = `<p>You've built more infrastructure than most businesses at this stage — some processes, maybe a CRM, some sense of where customers come from. But the founder is still the primary growth driver, and most of the commercial knowledge still lives with you. The team can execute, but they can't originate or manage the full commercial cycle independently.</p>
       <p>The risk at this stage is adding complexity before the basics are locked in. A new marketing program, a new hire, a new technology — none of those help if the foundation isn't solid. The priority is turning what's in your head into something the team can own and run.</p>`;
@@ -954,7 +985,7 @@
         'Have an honest conversation with your team about where they feel stuck without you. That\'s where to build first.',
       ];
     } else if (total <= 18) {
-      stageName   = 'Stage 3 — Infrastructure Taking Shape';
+      stageName   = 'Stage 3 — Shared Infrastructure';
       headline    = 'You\'ve built real foundations. The opportunity is making them team-owned, not founder-adjacent.';
       description = `<p>The commercial basics exist — your acquisition process is documented, data is reasonably clean, the team has defined roles, and you review metrics with some regularity. This is meaningfully ahead of most founder-led businesses. The foundation is real.</p>
       <p>What's left is the transition from "infrastructure that exists" to "infrastructure the team actually runs." The question at this stage is: if you stepped back, what would require your judgment versus what would happen automatically? Every answer to that question is a gap to close.</p>`;
@@ -965,7 +996,7 @@
         'Review your tech stack. The right tools at this stage can do significantly more than most businesses realize — at a cost that makes sense.',
       ];
     } else {
-      stageName   = 'Stage 4 — Ready to Scale';
+      stageName   = 'Stage 4 — Transferable Foundations';
       headline    = 'You\'ve built something that can outlast you. The work now is making sure it does.';
       description = `<p>The commercial engine runs without you needing to be in every room. Revenue is understood, data is trusted, the team has clear ownership, and you have visibility into the business through metrics — not just instinct. This is rare for a founder-led business, and it's a genuine competitive advantage.</p>
       <p>The remaining question is transferability. Not whether the business works today — it does — but whether a new person stepping into a commercial leadership role could get up to speed in 30 days or 6 months. The answer to that question determines your options: for growth, for bringing on investors, for eventually stepping back on your own terms.</p>`;
@@ -981,7 +1012,7 @@
     document.getElementById('res-stage-name').textContent = stageName;
     document.getElementById('res-score-line').textContent = 'Score: ' + total + ' / ' + maxScore;
     document.getElementById('res-headline').textContent = headline;
-    document.getElementById('res-description').innerHTML = description;
+    document.getElementById('res-description').innerHTML = '<p>This snapshot highlights what may be transferable today and what deserves a closer look. Founder relationships and institutional knowledge are often valuable assets (the question is how well they can be understood and carried forward).</p>';
 
     // Section score bars
     let barsHTML = '';
@@ -998,12 +1029,10 @@
     });
     document.getElementById('res-score-bars').innerHTML = barsHTML;
 
-    // Priorities
-    let priHTML = '';
-    priorities.forEach(p => {
-      priHTML += `<div class="priority-item"><div class="priority-dot"></div><div class="priority-text">${p}</div></div>`;
-    });
-    document.getElementById('res-priorities').innerHTML = priHTML;
+    // A short public signal only. Detailed recommendations are reserved for the requested brief.
+    const lowest = sectionScores.slice().sort((a,b) => (a.score/a.max)-(b.score/b.max))[0];
+    document.getElementById('res-priorities').innerHTML = '<div class="priority-item"><div class="priority-dot"></div><div class="priority-text">Start by discussing <strong>' + lowest.label + '</strong>. A low score may reflect a handoff risk or simply a capability that has not yet been made visible to the wider team.</div></div>';
+    window.assessmentSummary = {total, stageName, sectionScores, lowest:lowest.label};
 
     // Show results
     document.getElementById('assessment-form').style.display = 'none';
